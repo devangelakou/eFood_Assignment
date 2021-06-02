@@ -13,3 +13,5 @@ A further analysis of the dataset is done in the explorer tool of Data Studio:
 https://datastudio.google.com/u/1/navigation/explorer >> eFood_assignment_v2 and _v3
 
 The final results are presented in the Data Studio report: https://datastudio.google.com/reporting/98f31f66-84c7-4c31-9a0d-b9a1080e8fe1 
+
+As a back up I've uploaded a static (PDF) version of the report in this file. 
