@@ -1,0 +1,38 @@
+/* Q1 */
+select city, count(order_id) as Breakfast_Orders 
+from `bi-2019-test.ad_hoc.orders_jan2021` 
+where cuisine_parent='Breakfast' 
+group by city 
+having count(order_id) > 500
+order by Breakfast_Orders desc 
+limit 10
+
+/* Q2 */
+select city, count(distinct user_id) as Breakfast_Users
+from `bi-2019-test.ad_hoc.orders_jan2021` 
+where cuisine_parent='Breakfast' 
+group by city 
+having count(order_id) > 500
+order by count(order_id) desc 
+limit 10
+
+/* Q3 */
+with city_interest as
+(
+select city, count(order_id) as Breakfast_Orders
+from `bi-2019-test.ad_hoc.orders_jan2021` 
+where cuisine_parent='Breakfast' 
+group by city
+having count(order_id) > 500
+order by count(order_id) desc 
+limit 10 
+)
+
+select o.city, user_id
+    , round(avg(basket),2) as average_basket_size
+    , c.Breakfast_Orders 
+from city_interest c 
+    inner join `bi-2019-test.ad_hoc.orders_jan2021` o on o.city =  c.city 
+group by o.city, user_id, c.Breakfast_Orders 
+order by c.Breakfast_orders desc
+
